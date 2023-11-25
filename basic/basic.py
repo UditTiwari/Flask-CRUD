@@ -35,12 +35,11 @@ def method_name():
     # Return the data as JSON
     return jsonify(products_data)
 
-def convert_price_to_float(price_string):
+def convert_price_to_float(price):
     try:
-        # Extract numeric part of the string and convert to float
-        return float(''.join(filter(str.isdigit, price_string)))
+        return float(price)
     except ValueError:
-        return 0.0  # Return 0.0 if conversion fails0
+        return 0.0
 
 @app.get('/price')
 def get_max_price():
