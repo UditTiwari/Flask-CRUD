@@ -3,12 +3,11 @@ from flask import request ,jsonify
 from models.user import User ,Profile
 from extensions import db
 
-class UserList(Resource):
-
-
+class UserRegister(Resource):
     def get(self):
-        user = User.query.all
-        return jsonify(msg=user)
+        user = User.query.all()
+
+        return jsonify(msg="Users",user=user)
     
 
     def post(self):
@@ -35,3 +34,20 @@ class UserList(Resource):
 
         return {"message": 'Username added'},200
 
+
+
+class UserList(Resource):
+
+    def get(self,user_id):
+        user = User.query.get_or_404(user_id)
+
+
+        return jsonify(users=user)
+
+
+    def delete(self,user_id):
+        user = User.query.get_or_404(user_id)
+        db.session.delete(user)
+        db.session.commit()
+
+        return {"msg":"user deleted"}
