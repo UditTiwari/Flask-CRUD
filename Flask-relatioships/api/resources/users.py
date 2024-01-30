@@ -25,8 +25,7 @@ class UserRegister(Resource):
             name=data.get("name"),
             profile=profile  # Assign the profile object to the user's profile attribute
         )
-        # user = User(name='Test User')
-        # profile = Profile(bio='Test user profile')
+        
 
         # user.profile = profile
         db.session.add(user)
